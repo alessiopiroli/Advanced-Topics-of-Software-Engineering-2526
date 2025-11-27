@@ -41,7 +41,7 @@ class TestCalculator:
         calc.memory_store(7)
         assert calc.memory_recall() == 7
         calc.memory_clear()
-        assert calc.memory_recall() == 0
+        assert calc.memory_recall() is None
 
     def test_get_last_result_and_clear_stack(self):
         calc = Calculator()
