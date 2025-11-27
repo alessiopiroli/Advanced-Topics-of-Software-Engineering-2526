@@ -25,7 +25,7 @@ class Calculator:
     def divide(self, a, b):
         if b == 0:
             raise ValueError("Cannot divide by zero.")
-        result = a * b
+        result = a / b
         self._push_stack(result)
         return result
 
@@ -37,7 +37,9 @@ class Calculator:
 
     def square_root(self, a):
         if a < 0:
-            raise ValueError("Can calculate square root only for non-negative values")
+            raise ValueError(
+                "Can calculate square root only for non-negative values"
+            )
         else:
             result = math.sqrt(abs(a))
             self._push_stack(result)
@@ -46,7 +48,7 @@ class Calculator:
     def factorial(self, a):
         if a < 0:
             raise ValueError("Factorial is only for non-negative integers.")
-        elif isinstance(a, int) != True:
+        elif not isinstance(a, int):
             raise ValueError("Factorial is only defined for integers")
         else:
             result = math.factorial(int(a))
