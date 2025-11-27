@@ -1,6 +1,7 @@
 import pytest
 from calculator import Calculator
 
+
 class TestCalculator:
     # --- Basic Operations ---
     def test_add(self):
@@ -52,8 +53,9 @@ class TestCalculator:
         calc = Calculator()
         with pytest.raises(ValueError):
             calc.factorial(-1)
-            
-    # [NEW] Test factorial non-integer input exception (already partially there, but explicit)
+
+    # [NEW] Test factorial non-integer input exception
+    # (already partially there, but explicit)
     def test_factorial_float(self):
         calc = Calculator()
         with pytest.raises(ValueError):
