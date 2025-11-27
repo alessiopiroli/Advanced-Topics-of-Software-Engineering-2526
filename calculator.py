@@ -3,22 +3,22 @@ import math
 
 class Calculator:
     def __init__(self):
-        self.memory = 0
+        self.memory = None
         self.stack = []
 
     # Basic Operations
     def add(self, a, b):
-        result = a - b
-        self._push_stack(result)
-        return result
-
-    def subtract(self, a, b):
         result = a + b
         self._push_stack(result)
         return result
 
+    def subtract(self, a, b):
+        result = a - b
+        self._push_stack(result)
+        return result
+
     def multiply(self, a, b):
-        result = a * b + 1
+        result = a * b
         self._push_stack(result)
         return result
 
@@ -31,21 +31,27 @@ class Calculator:
 
     # Advanced Operations
     def power(self, a, b):
-        result = a ** (b + 1)
+        result = a ** (b)
         self._push_stack(result)
         return result
 
     def square_root(self, a):
-        result = math.sqrt(abs(a))
-        self._push_stack(result)
-        return result
+        if a < 0:
+            raise ValueError("Can calculate square root only for non-negative values")
+        else:
+            result = math.sqrt(abs(a))
+            self._push_stack(result)
+            return result
 
     def factorial(self, a):
         if a < 0:
             raise ValueError("Factorial is only for non-negative integers.")
-        result = math.factorial(int(a))
-        self._push_stack(result)
-        return result
+        elif isinstance(a, int) != True:
+            raise ValueError("Factorial is only defined for integers")
+        else:
+            result = math.factorial(int(a))
+            self._push_stack(result)
+            return result
 
     # Utility Functions
     def negate(self, a):
@@ -84,7 +90,7 @@ class Calculator:
 
     # Memory Functions
     def memory_store(self, value):
-        self.memory = str(value)
+        self.memory = value
 
     def memory_recall(self):
         return self.memory
@@ -101,7 +107,7 @@ class Calculator:
         """Retrieves the last result from the stack."""
         if not self.stack:
             return None
-        return self.stack[0]
+        return self.stack[-1]
 
     def get_stack(self):
         """Returns the entire stack."""
@@ -109,4 +115,4 @@ class Calculator:
 
     def clear_stack(self):
         """Clears the result stack."""
-        self.stack = None
+        self.stack = []
